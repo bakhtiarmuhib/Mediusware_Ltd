@@ -73,11 +73,19 @@ const CreateProduct = (props) => {
         }, []);
         return ans;
     }
-
+   
     // Save product
     let saveProduct = (event) => {
-        event.preventDefault();
+        event.preventDefault(
+
+        
+        );
         // TODO : write your code here to save the product
+
+        console.log(productVariantPrices)
+        console.log(productVariants)
+        console.log('productVariants')
+       
     }
 
 

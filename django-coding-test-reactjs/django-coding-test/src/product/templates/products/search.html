@@ -19,8 +19,6 @@
                 <div class="col-md-2">
                     <select name="variant" id="" class="form-control">
                         <option selected disabled>--Select A Variant--</option>
-                        <option value="xl" >--xl--</option>
-                        <option value="l" >--l--</option>
 
                     </select>
                 </div>
@@ -59,11 +57,11 @@
 
                     <tbody>
                         
-                        {% for single_product in page_obj %}
+                        {% for single_product in result %}
                             <tr>
 
                                 <td>{{single_product.id}}</td>
-                                <td>{{single_product.title}} <br> Created at : {{single_product.updated_at}}</td>
+                                <td>{{single_product.title}} <br> Created at : 25-Aug-2020</td>
                                 <td>{{single_product.description}}</td>
                                 <td>
 
@@ -71,17 +69,19 @@
 
                                                 <dl class="row mb-0" style="height: 80px; overflow: hidden" id="variant">
                                                     
+                                                    
                                                     {% for variant_product in single_product.product.all %}
-                                                        <dt class="col-sm-3 pb-0">
-                                                            {{variant_product.product_variant_one.variant_title}}/ {{variant_product.product_variant_two.variant_title}}/ {{variant_product.product_variant_three.variant_title}}
-                                                        </dt>
-                                                        <dd class="col-sm-9">
-                                                            <dl class="row mb-0">
-                                                                <dd class="col-sm-4 pb-0">Price : {{variant_product.price}}</dd>
-                                                                <dd class="col-sm-8 pb-0">InStock : {{variant_product.stock}}.</dd>
-                                                            </dl>
-                                                        </dd>
-                                                    {% endfor %}
+                                                    <dt class="col-sm-3 pb-0">
+                                                        {{variant_product.product_variant_one.variant_title}}/ {{variant_product.product_variant_two.variant_title}}/ {{variant_product.product_variant_three.variant_title}}
+                                                    </dt>
+                                                    <dd class="col-sm-9">
+                                                        <dl class="row mb-0">
+                                                            <dd class="col-sm-4 pb-0">Price : {{variant_product.price}}</dd>
+                                                            <dd class="col-sm-8 pb-0">InStock : {{variant_product.stock}}.</dd>
+                                                        </dl>
+                                                    </dd>
+                                                {% endfor %}
+                                                    
                                                 </dl>
                                                 
                                                 <button onclick="$('#variant').toggleClass('h-auto')" class="btn btn-sm btn-link">Show more
@@ -108,47 +108,6 @@
 
         </div>
 
-        <div class="card-footer">
-            <div class="row justify-content-between">
-                <div class="col-md-6">
-                    <p>Showing {{page_obj.start_index }} to {{page_obj.end_index }}  out of {{total_item}}</p>
-                </div>
-                <div class="col-md-6">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                          {% if page_obj.has_previous == False %}
-                          <li class="page-item disabled">
-                            <a class="page-link"  tabindex="-1" aria-disabled="true">Previous</a>
-                          </li>
-                          {% endif %}
-                          {% if page_obj.has_previous %}
-                          <li class="page-item">
-                            <a class="page-link" href="?page={{page_obj.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
-                          </li>
-                          {% endif %}
-            
-                          <li class="page-item"><a class="page-link" href="#">{{page_obj.number}} of {{page_obj.paginator.num_pages}}</a></li>
-                          
-                          
-                          
-                          
-            
-                          {% if page_obj.has_next == False %}
-                          <li class="page-item disabled" >
-                            <a class="page-link">Next</a>
-                          </li>
-                          {% endif %}
-                          {% if page_obj.has_next %}
-                          <li class="page-item">
-                            <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
-                          </li>
-                          {% endif %}
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-
-        </div>
     </div>
 
 {% endblock %}
